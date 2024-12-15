@@ -143,5 +143,5 @@ filmy.forEach((film) => {
     </div>
   `;
 
-  seznamFilmu.insertAdjacentHTML('beforeend', filmHTML);
+  seznamFilmu.insertAdjacentHTML('beforeend', filmHTML); //https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
 });

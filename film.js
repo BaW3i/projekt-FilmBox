@@ -122,6 +122,13 @@ const filmy = [
     const hash = window.location.hash.slice(1)
     const movie = filmy.find(film => film.id === hash);
     console.log(movie);
+/* 
+The find() method is an iterative method. It calls a provided callbackFn function once for each element in an array in ascending-index order, 
+until callbackFn returns a truthy value. find() then returns that element and stops iterating through the array. 
+If callbackFn never returns a truthy value, find() returns undefined. 
+array.find(callback(element [, index [, array]]) [,thisParameter])
+console.log(greetings.find((word) => word.length > 6))
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find */
     
     const titleElement = document.querySelector('.card-title');
     titleElement.textContent = movie.nazev; 
@@ -140,24 +147,24 @@ const noteForm = document.querySelector('#note-form');
 const messageInput = document.querySelector('#message-input');
 const termsCheckbox = document.querySelector('#terms-checkbox');
 
-noteForm.addEventListener('submit', (event) => {
+noteForm.addEventListener('submit', (event) => {  
     event.preventDefault();
 
-    let isValid = true;
+    let validity = true;
 
     if (messageInput.value === '') {
         messageInput.classList.add('is-invalid');
         messageInput.focus();
-        isValid = false;
+        validity = false;
     }
 
     if (!termsCheckbox.checked) {
         termsCheckbox.classList.add('is-invalid');
         termsCheckbox.focus();
-        isValid = false;
+        validity = false;
     }
 
-    if (isValid) {
+    if (validity) {
         const noteContent = messageInput.value;
         noteForm.innerHTML = `<p class="card-text">${noteContent}</p>`;
     }
