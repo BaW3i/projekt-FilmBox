@@ -103,4 +103,62 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: 'baby-driver',
+		nazev: 'Baby Driver',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/161/830/161830487_789d56.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Zábavná honička.',
+		popis:
+			'Talentovaný mladý řidič (Ansel Elgort), který zajišťuje zločincům únik z místa činu, je ve své práci tím nejlepším z oboru i díky hudbě, kterou si během ní pouští. Když se Baby setká s dívkou svých snů (Lily James), vnímá to jako příležitost opustit život zločince a začít znovu. Poté, co je ale mafiánským bossem (Kevin Spacey) přinucen zúčastnit se další akce, která je předem odsouzena k neúspěchu, ocitá se v ohrožení jeho život, láska i svoboda.',
+		premiera: '2020-11-08',
+	}
 ]
+
+ findMovie = () => {
+    const hash = window.location.hash.slice(1)
+    const movie = filmy.find(film => film.id === hash);
+    console.log(movie);
+    
+    const titleElement = document.querySelector('.card-title');
+    titleElement.textContent = movie.nazev; 
+
+    const descriptionElement = document.querySelector('.card-text:not(#premiera)');
+    descriptionElement.textContent = movie.popis; 
+
+	const pictureElement = document.querySelector('.col-md-5 img');
+    pictureElement.textContent = movie.plakat.url; 
+	pictureElement.src = movie.plakat.url ;
+
+}
+findMovie()
+
+const noteForm = document.querySelector('#note-form');
+const messageInput = document.querySelector('#message-input');
+const termsCheckbox = document.querySelector('#terms-checkbox');
+
+noteForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    let isValid = true;
+
+    if (messageInput.value === '') {
+        messageInput.classList.add('is-invalid');
+        messageInput.focus();
+        isValid = false;
+    }
+
+    if (!termsCheckbox.checked) {
+        termsCheckbox.classList.add('is-invalid');
+        termsCheckbox.focus();
+        isValid = false;
+    }
+
+    if (isValid) {
+        const noteContent = messageInput.value;
+        noteForm.innerHTML = `<p class="card-text">${noteContent}</p>`;
+    }
+});

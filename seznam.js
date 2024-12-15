@@ -3,7 +3,7 @@ const filmy = [
 		id: 'pelisky',
 		nazev: 'Pelíšky',
 		plakat: {
-			url: 'https://image.pmgstatic.com/cache/resized/w663/files/images/film/posters/165/059/165059101_56d52a.jpg',
+			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/165/059/165059101_56d52a.jpg',
 			sirka: 663,
 			vyska: 909,
 		},
@@ -103,4 +103,45 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: 'baby-driver',
+		nazev: 'Baby Driver',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/161/830/161830487_789d56.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Zábavná honička.',
+		popis:
+			'Talentovaný mladý řidič (Ansel Elgort), který zajišťuje zločincům únik z místa činu, je ve své práci tím nejlepším z oboru i díky hudbě, kterou si během ní pouští. Když se Baby setká s dívkou svých snů (Lily James), vnímá to jako příležitost opustit život zločince a začít znovu. Poté, co je ale mafiánským bossem (Kevin Spacey) přinucen zúčastnit se další akce, která je předem odsouzena k neúspěchu, ocitá se v ohrožení jeho život, láska i svoboda.',
+		premiera: '2020-11-08',
+	}
 ]
+
+
+
+const seznamFilmu = document.querySelector('#seznam-filmu');
+seznamFilmu.innerHTML = '';
+
+filmy.forEach((film) => {
+  const filmHTML = `
+    <div class="col">
+      <div class="card">
+        <img
+          src="${film.plakat.url}"
+          width="${film.plakat.sirka}"
+          height="${film.plakat.vyska}"
+          class="card-img-top"
+          alt="${film.nazev} plakát"
+        />
+        <div class="card-body">
+          <h5 class="card-title">${film.nazev}</h5>
+          <p class="card-text">${film.ochutnavka}</p>
+          <a href="film.html?#${film.id}" class="btn btn-primary">Přehrát</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  seznamFilmu.insertAdjacentHTML('beforeend', filmHTML);
+});
